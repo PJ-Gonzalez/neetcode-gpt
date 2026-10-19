@@ -13,7 +13,7 @@ class Solution:
         # Sigmoid: σ(z) = 1 / (1 + exp(-z))
         # ReLU: max(0, z)
         # return round(your_answer, 5)
-        z = float(np.dot(x, w) + b)
+        z = np.dot(x, w) + b
 
         if activation == "sigmoid":
             y = 1 / (1 + np.exp(-z))
@@ -22,4 +22,4 @@ class Solution:
         else:
             raise ValueError(f"Unsupported activation: {activation}")
 
-        return round(float(y), 5)
+        return round(y, 5)
