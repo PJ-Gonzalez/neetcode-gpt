@@ -15,15 +15,14 @@ class Solution:
         # Initialize w = zeros, b = 0
         # return (np.round(w, 5), round(b, 5))
         n_samples, n_features = X.shape
-        w = np.zeros(n_features, dtype=np.float64)
-        b = 0.0
+        w, b = np.zeros(n_features), 0.0
 
         for _ in range(epochs):
             y_hat = X @ w + b
             error = y_hat - y
 
-            dw = (2 / n_samples) * (X.T @ error)
-            db = (2 / n_samples) * np.sum(error)
+            dw = 2/n_samples * X.T @ error
+            db = 2/n_samples * np.sum(error)
 
             w -= lr * dw
             b -= lr * db
