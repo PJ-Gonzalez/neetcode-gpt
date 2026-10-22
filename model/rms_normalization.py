@@ -10,5 +10,5 @@ class Solution:
         x_arr = np.asarray(x, dtype=float)
         gamma_arr = np.asarray(gamma, dtype=float)
 
-        normalized = x_arr / np.sqrt(np.mean(x_arr ** 2) + eps)
+        normalized = x_arr / np.sqrt(np.mean(x_arr * x_arr) + eps)
         return np.round(gamma_arr * normalized, 4).tolist()
