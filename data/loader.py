@@ -16,17 +16,15 @@ class Solution:
         # Use torch.manual_seed(0) before generating random start indices
         # Use torch.randint to pick random starting positions
         torch.manual_seed(0)
-
-        starts = torch.randint(
-            0,
+        ix = torch.randint(
             len(data) - context_length,
             (batch_size,),
             device=data.device,
         )
-        offsets = torch.arange(context_length, device=data.device)
-        indices = starts[:, None] + offsets
 
-        X = data[indices]
-        Y = data[indices + 1]
+        windows = data.unfold(0, context_length + 1, 1)
+        batch = windows[ix]
 
-        return X, Y
+        x = batch[:, :-1]
+        y = batch[:, 1:]
+        return x, y
